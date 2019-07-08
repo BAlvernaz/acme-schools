@@ -1,9 +1,9 @@
-const Student = require('./Models/Students')
-const db = require('./db')
+const {db, School, Student} = require('./index')
 
 const seed = async () => {
   await db.sync({force: true})
-  await Student.create({name: "Blake"})
+  await Student.create({firstName: "Blake", lastName: "Alvernaz", email: "balverna@gmail.com", gpa: 4.0})
+  await School.create({name: "Cal Poly San Luis Obispo"})
 }
 
-seed()
+module.exports = seed()

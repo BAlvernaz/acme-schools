@@ -7,6 +7,7 @@
     "start": "webpack-dev-server --open",
     "start:dev": "nodemon ./backend/server/server.js",
     "seed": "node ./backend/db/seed.js",
+    "test:dev": "mocha ./backend/db/spec.js --watch ",
     "build-watch": "webpack --watch --mode development",
     "build": "webpack --mode production"
   },
@@ -15,13 +16,16 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.4.5",
+    "@babel/polyfill": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4",
+    "supertest": "^4.0.2",
     "webpack": "^4.32.2",
     "webpack-cli": "^3.3.2",
-    "webpack-dev-server": "^3.4.1",
-    "@babel/polyfill": "^7.4.4"
+    "webpack-dev-server": "^3.4.1"
   },
   "dependencies": {
     "axios": "^0.18.0",
