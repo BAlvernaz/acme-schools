@@ -1,0 +1,11 @@
+#NavbarContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: dodgerblue;
+  color: white;
+}
+#NavbarContainer > a {
+  text-decoration: none;
+  color: white
+}
