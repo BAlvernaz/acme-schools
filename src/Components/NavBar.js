@@ -1,8 +1,9 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import store from '../store'
-class NavBar extends React.Component {
-  render() {
+import { connect } from 'react-redux'
+
+const NavBar = ({students}) => {
+  console.log(students)
     return (
       <div id='NavbarContainer'>
         <h1>Acme Schools</h1>
@@ -10,11 +11,12 @@ class NavBar extends React.Component {
         <NavLink to="/schools"><h3>Schools</h3></NavLink>
         <NavLink to="/students"><h3>Students</h3></NavLink>
         {
-          
+
         }
       </div>
     )
   }
-}
 
-export default NavBar
+  const stateToProps = state => state
+
+export default connect(stateToProps)(NavBar)
