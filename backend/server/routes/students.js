@@ -21,9 +21,10 @@ router.post("/", async (req, res, next) => {
 
 router.put("/:id", async (req, res, next) => {
   try {
+    console.log(req.body)
     const upStudent = await Student.update(req.body, {
       where: {
-        id: req.params.name
+        id: req.params.id
       }
     });
     res.send(upStudent)

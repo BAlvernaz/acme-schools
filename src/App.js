@@ -13,8 +13,8 @@ const App = () => {
       <Route component={Navbar} />
       <div>
         <Route path="/home" component={Home} />
-        <Route path="/schools" component={Schools} />
-
+        <Route exact path="/schools" component={Schools} />
+        <Route path="/schools/:id" component={Home} />
       </div>
     </HashRouter>
     </Provider>

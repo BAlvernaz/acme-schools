@@ -10,7 +10,19 @@
   color: white
 }
 
+#allSchoolContainer {
+  display: flex;
+}
+
+#schoolCard {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  border: 2px solid black;
+  width: 33%
+}
+
 #schoolImg {
-  height: 10%;
-  width: 10%;
+  height: 70%;
+  width: 100%;
 }
