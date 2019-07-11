@@ -13,6 +13,12 @@ const School = db.define("schools", {
   },
   image: {
     type: Sequelize.STRING
+  },
+  amountofStudents: {
+    type: Sequelize.INTEGER,
+},
+  averageGPA: {
+    type: Sequelize.VIRTUAL
   }
 })
 
