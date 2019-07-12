@@ -21,13 +21,12 @@ router.post("/", async (req, res, next) => {
 
 router.put("/:id", async (req, res, next) => {
   try {
-    console.log(req.body)
     const upStudent = await Student.update(req.body, {
       where: {
         id: req.params.id
       }
     });
-    res.send(upStudent)
+    res.send(upStudent);
   } catch (ex) {
     next(ex);
   }
@@ -39,12 +38,11 @@ router.delete("/:id", async (req, res, next) => {
       where: {
         id: req.params.id
       }
-    }
-    )
-    res.status(204).send(delStudent)
-  } catch(ex) {
-    next(ex)
+    });
+    res.status(204).send(delStudent);
+  } catch (ex) {
+    next(ex);
   }
-})
+});
 
 module.exports = router;

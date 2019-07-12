@@ -13,17 +13,10 @@ class Schools extends React.Component {
     this.onChange = this.onChange.bind(this);
   }
 
-  async onChange(student, schoolId) {
-    await axios.put(`/api/students/${student.id}`, { schoolId });
-    const selection = this.state.selection.map(_student => {
-      if (_student !== student.id) {
-        return _student;
-      } else {
-        return { ...student, schoolId };
-      }
-    });
-    this.setState({ selection });
-    window.location.hash = `/schools/${schoolId}`;
+  // async
+  onChange(student) {
+    console.log(student)
+    // await axios.put(`/api/students/${student}`, { schoolId });
   }
 
   render() {
@@ -48,18 +41,15 @@ class Schools extends React.Component {
                       .length
                   }
                 </p>
-                {students
-                  .filter(student => student.schoolId !== school.id)
-                  .map(student => (
-                    <div key={student.id}>
-                      <select onChange={ev => onChange(student, school.id)}>
-                        <option>Select A Student To Ad</option>
-                        <option value={student.Id}>
-                          {student.firstName} {student.lastName}
-                        </option>
-                      </select>
-                    </div>
-                  ))}
+                <select onChange={ev => console.log(ev.target.value)}>
+                  {students
+                    .filter(student => student.schoolId !== school.id)
+                    .map(student => (
+                      <option value={student.id} key={student.id}>
+                        {student.firstName} {student.lastName}
+                      </option>
+                    ))}
+                </select>
               </div>
             ))}
           </div>
@@ -68,7 +58,7 @@ class Schools extends React.Component {
     );
   }
 }
-import Axios from "axios";
+
 
 const stateToProps = state => state;
 
