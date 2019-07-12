@@ -4,25 +4,7 @@ import { connect } from "react-redux";
 import Form from "./Form";
 import axios from "axios";
 
-class Schools extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selection: []
-    };
-    this.onChange = this.onChange.bind(this);
-  }
-
-  // async
-  onChange(student) {
-    console.log(student)
-    // await axios.put(`/api/students/${student}`, { schoolId });
-  }
-
-  render() {
-    const { selection } = this.state;
-    const { students, schools } = this.props;
-    const { onChange } = this;
+const Schools = ({students, schools, onChange}) => {
     return (
       <div>
         <div>
@@ -41,7 +23,7 @@ class Schools extends React.Component {
                       .length
                   }
                 </p>
-                <select onChange={ev => console.log(ev.target.value)}>
+                <select onChange={(ev) => onChange(ev.target.value, school.id)} defaultValue={<option>select</option>}>
                   {students
                     .filter(student => student.schoolId !== school.id)
                     .map(student => (
@@ -57,9 +39,19 @@ class Schools extends React.Component {
       </div>
     );
   }
-}
 
 
 const stateToProps = state => state;
+const dispatchToProps = dispatch => {
+  return {
+    onChange: async(studentId, schoolId) => {
+     const response = await axios.put(`/api/students/${studentId}`, {schoolId})
+     if (response.data.length) {
+      dispatch({type: "GOING_TO_SCHOOL", studentId, schoolId})
+      window.location.hash = `/schools/${schoolId}`
+     }
+    }
+  }
+}
 
-export default connect(stateToProps)(Schools);
+export default connect(stateToProps, dispatchToProps)(Schools);

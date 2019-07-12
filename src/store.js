@@ -1,8 +1,10 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import axios from 'axios';
+import thunkMiddleware from 'redux-thunks'
 
 const GET_ALL = 'GET_ALL';
 const GOING_TO_SCHOOL = 'GOING_TO_SCHOOL'
+
 
 const initState = {
   students: [],
@@ -15,7 +17,12 @@ const reducer = (state = initState, action) => {
       state = { students: action.students, schools: action.schools };
       break;
     case GOING_TO_SCHOOL:
-
+      const students = state.students.map(student => {
+        return student.id === action.studentId
+        ? {...student, schooId: action.schooId}
+        : student
+      })
+      return {...state, students}
   }
   return state;
 };
@@ -33,6 +40,6 @@ const start = async () => {
 
 start();
 
-const store = createStore(reducer);
+const store = createStore(reducer, applyMiddleware(thunkMiddleware));
 
 export default store;
