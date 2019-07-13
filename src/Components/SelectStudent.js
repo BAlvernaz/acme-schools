@@ -12,6 +12,7 @@ class SelectStudent extends React.Component {
   }
   async onChange(ev) {
     this.setState({studentId: ev.target.value})
+    this.props.sendIds({studentId: ev.target.value, schoolId: this.props.school.id})
   }
   render() {
     const { selection } = this.state;
@@ -34,8 +35,11 @@ class SelectStudent extends React.Component {
 
 
 
-const dispatchToProp = (_data) => {
-    return dispatch => dispatch(selectStudent(_data))
+const dispatchToProp = dispatch => {
+    return {
+        sendIds: data => dispatch(selectStudent(data))
+    }
 }
+
 
 export default connect(null, dispatchToProp)(SelectStudent);
