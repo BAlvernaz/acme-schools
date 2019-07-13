@@ -14,6 +14,11 @@
   display: flex;
 }
 
+#allStudentsContainer {
+  display: flex;
+  flex-wrap: wrap
+}
+
 form {
   display: flex;
   flex-direction: column;
@@ -29,6 +34,13 @@ form {
   width: 33%;
 }
 
+#studentCard {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  border: 2px solid black;
+  width: 33%;
+}
 #schoolImg {
   height: 70%;
   width: 100%;

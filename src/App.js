@@ -5,6 +5,7 @@ import { Provider } from 'react-redux'
 import store from './store'
 import Home from './Components/Home.js'
 import Schools from './Components/Schools'
+import Students from './Components/Students';
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Route path="/home" component={Home} />
         <Route exact path="/schools" component={Schools} />
         <Route path="/schools/:id" component={Home} />
+        <Route path="/students" component={Students} />
       </div>
     </HashRouter>
     </Provider>

@@ -38,4 +38,10 @@ const Schools = ({ students, schools }) => {
 
 const stateToProps = state => state;
 
-export default connect(stateToProps)(Schools);
+const dispatchToProps = dispatch => {
+  return {
+      sendIds: data => dispatch(selectStudent(data))
+  }
+}
+
+export default connect(stateToProps, dispatchToProps)(Schools);

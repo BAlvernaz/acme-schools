@@ -1,45 +1,49 @@
-import React from "react";
-import { connect } from "react-redux";
-import { selectStudent } from '../store' 
+import React from 'react';
+import { connect } from 'react-redux';
+import { selectStudent } from '../store';
 
 class SelectStudent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      studentId: ""
+      studentId: ''
     };
-    this.onChange = this.onChange.bind(this)
+    this.onChange = this.onChange.bind(this);
   }
   async onChange(ev) {
-    this.setState({studentId: ev.target.value})
-    this.props.sendIds({studentId: ev.target.value, schoolId: this.props.school.id})
+    this.setState({ studentId: ev.target.value });
+    this.props.sendIds({
+      studentId: ev.target.value,
+      schoolId: this.props.school.id
+    });
   }
   render() {
     const { selection } = this.state;
-    const { students, school  } = this.props;
-    const { onChange } = this
+    const { students, school } = this.props;
+    const { onChange } = this;
 
     return (
-      <select value={selection} onChange={onChange} >
-        <option value='null'>-- Add Student ---</option>
-        {students.filter(student => student.schoolId !== school.id).map(student => (
-          <option key={student.id} value={student.id}>
-            {student.firstName} {student.lastName}
-          </option>
-        )
-        )}
+      <select value={selection} onChange={onChange}>
+        <option value="null">-- Add Student ---</option>
+        {students
+          .filter(student => student.schoolId !== school.id)
+          .map(student => (
+            <option key={student.id} value={student.id}>
+              {student.firstName} {student.lastName}
+            </option>
+          ))}
       </select>
     );
   }
 }
 
+const dispatchToProps = dispatch => {
+  return {
+    sendIds: data => dispatch(selectStudent(data))
+  };
+};
 
-
-const dispatchToProp = dispatch => {
-    return {
-        sendIds: data => dispatch(selectStudent(data))
-    }
-}
-
-
-export default connect(null, dispatchToProp)(SelectStudent);
+export default connect(
+  null,
+  dispatchToProps
+)(SelectStudent);
