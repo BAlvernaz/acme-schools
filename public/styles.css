@@ -7,11 +7,18 @@
 }
 #NavbarContainer > a {
   text-decoration: none;
-  color: white
+  color: white;
 }
 
 #allSchoolContainer {
   display: flex;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
 }
 
 #schoolCard {
@@ -19,7 +26,7 @@
   flex-direction: column;
   flex-grow: 1;
   border: 2px solid black;
-  width: 33%
+  width: 33%;
 }
 
 #schoolImg {

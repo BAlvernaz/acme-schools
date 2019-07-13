@@ -23,6 +23,13 @@
     "chai": "^4.2.0",
     "faker": "^4.1.0",
     "mocha": "^6.1.4",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-redux": "^7.1.0",
+    "react-router-dom": "^5.0.0",
+    "redux": "^4.0.1",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
     "supertest": "^4.0.2",
     "webpack": "^4.32.2",
     "webpack-cli": "^3.3.2",
@@ -32,14 +39,6 @@
     "axios": "^0.18.0",
     "express": "^4.17.1",
     "pg": "^7.11.0",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-redux": "^7.1.0",
-    "react-router-dom": "^5.0.0",
-    "redux": "^4.0.1",
-    "redux-logger": "^3.0.6",
-    "redux-thunks": "^1.0.0",
-    "sequelize": "^5.8.12",
-    "thunks": "^4.9.4"
+    "sequelize": "^5.8.12"
   }
 }
