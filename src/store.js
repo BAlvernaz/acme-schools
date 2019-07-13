@@ -11,7 +11,10 @@ const newStudent = student => ({
   student
 });
 
-const selectedSchool = (data) => console.log(data)
+const selectedSchool = (data) => ({
+  type: GOING_TO_SCHOOL,
+  data
+})
 
 export const addStudent = student => {
   return async dispatch => {
@@ -23,7 +26,7 @@ export const addStudent = student => {
 export const selectStudent = async (data) => {
   return async dispatch => {
     await axios.put(`/api/students/${data.studentId}`, {schoolId: data.schoolId});
-    dispatch(() => console.log(response.data))
+    dispatch(selectedSchool(data))
   };
 };
 

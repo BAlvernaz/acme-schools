@@ -2,9 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Form from './Form';
-import axios from 'axios';
 import SelectStudent from './SelectStudent';
-import { selectSchool } from '../store';
+
 
 const Schools = ({ students, schools }) => {
   return (
