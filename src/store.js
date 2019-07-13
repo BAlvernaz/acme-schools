@@ -23,7 +23,7 @@ export const addStudent = student => {
   };
 };
 
-export const selectStudent = async (data) => {
+export const selectStudent = data => {
   return async dispatch => {
     await axios.put(`/api/students/${data.studentId}`, {schoolId: data.schoolId});
     dispatch(selectedSchool(data))
