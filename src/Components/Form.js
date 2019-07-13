@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addStudent } from '../store';
 
+
 class Form extends React.Component {
   constructor(props) {
     super(props);
@@ -10,7 +11,7 @@ class Form extends React.Component {
       lastName: '',
       email: '',
       gpa: '',
-      schoolId: ''
+      schoolId: null
     };
     this.onChange = this.onChange.bind(this);
   }
@@ -21,11 +22,10 @@ class Form extends React.Component {
 
   render() {
     const { firstName, lastName, email, gpa, schoolId } = this.state;
-    const { students, schools, onSubmit } = this.props;
+    const { schools, onSubmit } = this.props;
     const { onChange } = this;
-    console.log(this.state);
     return (
-      <form>
+      <form onSubmit={() => onSubmit(this.state)}>
         <label htmlFor="firstName" className="inputLables">
           First Name <input name="firstName" value={firstName} onChange={onChange} />
         </label>
@@ -40,15 +40,16 @@ class Form extends React.Component {
         </label>
         <label htmlFor="schoolId">
           Enroll At{' '}
-          <select name="schoolId" onChange={onChange} value={schoolId}>
-            <option value="null">--Not Enrolled --</option>
+          <select name="schoolId" onChange={onChange} defaultValue={null}>
+            <option >--Not Enrolled --</option>
             {schools.map(school => (
               <option key={school.id} value={school.id}>
                 {school.name}
-              </option>
+              </option>            
             ))}
           </select>
         </label>
+        <input type="submit" value="Save" />
       </form>
     );
   }
