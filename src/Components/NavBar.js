@@ -19,6 +19,11 @@ const NavBar = ({ students, schools }) => {
   );
 };
 
-const stateToProps = state => state;
+const stateToProps = ({students, schools}) => {
+  return {
+    students,
+    schools
+  }
+};
 
 export default connect(stateToProps)(NavBar);

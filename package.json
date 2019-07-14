@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --open",
-    "start:dev": "nodemon ./backend/server/server.js",
+    "start:dev": "npm run build-watch & nodemon ./backend/server/server.js --ignore src/ --ignore --public/",
     "seed": "node ./backend/db/seed.js",
     "test:dev": "mocha ./backend/db/spec.js --watch ",
     "build-watch": "webpack --watch --mode development",

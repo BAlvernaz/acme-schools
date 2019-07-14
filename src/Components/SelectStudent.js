@@ -37,6 +37,12 @@ class SelectStudent extends React.Component {
   }
 }
 
+const stateToProps = ({students}) => {
+  return {
+   students
+}
+}
+
 const dispatchToProps = dispatch => {
   return {
     sendIds: data => dispatch(selectStudent(data))
@@ -44,6 +50,6 @@ const dispatchToProps = dispatch => {
 };
 
 export default connect(
-  null,
+  stateToProps,
   dispatchToProps
 )(SelectStudent);

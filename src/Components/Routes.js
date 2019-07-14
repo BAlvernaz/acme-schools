@@ -6,6 +6,7 @@ import Home from './Home'
 import Schools from './Schools'
 import Students from './Students'
 import { loadAll } from '../store'
+import School from './School'
 
 class Routes extends React.Component {
   componentDidMount() {
@@ -16,9 +17,9 @@ class Routes extends React.Component {
       <HashRouter>
       <Route component={Navbar} />
       <div>
-        <Route path="/home" component={Home} />
+        <Route exact path="/home" component={Home} />
         <Route exact path="/schools" component={Schools} />
-        <Route path="/schools/:id" component={Home} />
+        <Route path="/schools/:id" component={School} />
         <Route path="/students" component={Students} />
       </div>
     </HashRouter>
