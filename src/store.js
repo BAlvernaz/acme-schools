@@ -1,11 +1,16 @@
-import { createStore, applyMiddleware } from 'redux';
-import axios from 'axios';
-import thunk from 'redux-thunk';
+import { createStore, applyMiddleware } from "redux";
+import axios from "axios";
+import thunk from "redux-thunk";
 
-const GET_ALL = 'GET_ALL';
-const GOING_TO_SCHOOL = 'GOING_TO_SCHOOL';
-const NEW_STUDENT = 'NEW_STUDENT';
-const DESTROY_STUDENT = 'DESTROY_STUDENT';
+const GET_ALL = "GET_ALL";
+const GOING_TO_SCHOOL = "GOING_TO_SCHOOL";
+const NEW_STUDENT = "NEW_STUDENT";
+const DESTROY_STUDENT = "DESTROY_STUDENT";
+
+const getAll = data => ({
+  type: GET_ALL,
+  data
+});
 
 const newStudent = student => ({
   type: NEW_STUDENT,
@@ -22,9 +27,18 @@ const deletedStudent = studentId => ({
   studentId
 });
 
+export const loadAll = () => {
+  return async dispatch => {
+    const students = axios.get("/api/students");
+    const schools = axios.get("/api/schools");
+    const response = await Promise.all([students, schools]);
+    dispatch(getAll({ students: response[0].data, schools: response[1].data }));
+  };
+};
+
 export const addStudent = student => {
   return async dispatch => {
-    const response = await axios.post('/api/students', student);
+    const response = await axios.post("/api/students", student);
     dispatch(newStudent(response.data));
   };
 };
@@ -40,9 +54,8 @@ export const selectStudent = data => {
 
 export const destroyStudent = studentId => {
   return async dispatch => {
-    const response = await axios.delete(`/api/students/${studentId}`);
-    console.log(response.data);
-    dispatch(deletedStudent(response.data));
+    await axios.delete(`/api/students/${studentId}`);
+    dispatch(deletedStudent(studentId));
   };
 };
 
@@ -54,7 +67,7 @@ const initState = {
 const reducer = (state = initState, action) => {
   switch (action.type) {
     case GET_ALL:
-      state = { students: action.students, schools: action.schools };
+      state = { students: action.data.students, schools: action.data.schools };
       break;
     case GOING_TO_SCHOOL:
       const students = state.students.map(student => {
@@ -80,18 +93,5 @@ const reducer = (state = initState, action) => {
 };
 
 const store = createStore(reducer, applyMiddleware(thunk));
-
-const start = async () => {
-  const students = axios.get('/api/students');
-  const schools = axios.get('/api/schools');
-  const response = await Promise.all([students, schools]);
-  store.dispatch({
-    type: GET_ALL,
-    students: response[0].data,
-    schools: response[1].data
-  });
-};
-
-start();
 
 export default store;

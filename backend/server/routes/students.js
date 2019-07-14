@@ -34,12 +34,12 @@ router.put("/:id", async (req, res, next) => {
 
 router.delete("/:id", async (req, res, next) => {
   try {
-    const delStudent = await Student.destroy({
+    await Student.destroy({
       where: {
         id: req.params.id
       }
     });
-    res.status(204).send(delStudent);
+    res.sendStatus(204);
   } catch (ex) {
     next(ex);
   }

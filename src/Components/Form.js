@@ -20,12 +20,16 @@ class Form extends React.Component {
     this.setState({ [ev.target.name]: ev.target.value });
   }
 
+  onSubmit
+
   render() {
     const { firstName, lastName, email, gpa, schoolId } = this.state;
-    const { schools, onSubmit } = this.props;
+    const { schools, onsubmit } = this.props;
     const { onChange } = this;
     return (
-      <form onSubmit={() => onSubmit(this.state)}>
+      <form onSubmit={(ev) => onSubmit
+        ev.preventDefaul
+        onSubmit(this.state))}>
         <label htmlFor="firstName" className="inputLables">
           First Name <input name="firstName" value={firstName} onChange={onChange} />
         </label>
@@ -45,7 +49,7 @@ class Form extends React.Component {
             {schools.map(school => (
               <option key={school.id} value={school.id}>
                 {school.name}
-              </option>            
+              </option>
             ))}
           </select>
         </label>
@@ -59,7 +63,7 @@ const stateToProps = state => state;
 
 const distpatchToProps = dispatch => {
   return {
-    onSubmit: (student)=> dispatch(addStudent(student))
+    onsubmit: (student)=> dispatch(addStudent(student))
   }
 }
 
