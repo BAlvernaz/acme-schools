@@ -10,7 +10,7 @@ class SelectStudent extends React.Component {
     };
     this.onChange = this.onChange.bind(this);
   }
-  async onChange(ev) {
+   onChange(ev) {
     this.setState({ studentId: ev.target.value });
     this.props.sendIds({
       studentId: ev.target.value,

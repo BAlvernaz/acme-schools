@@ -11,23 +11,27 @@ class Form extends React.Component {
       lastName: '',
       email: '',
       gpa: '',
-      schoolId: null
+      schoolId: ''
     };
     this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this)
   }
 
   onChange(ev) {
     this.setState({ [ev.target.name]: ev.target.value });
   }
 
+  onSubmit(ev) {
+    ev.preventDefault()
+    this.props.handlesubmit(this.state)
+  }
+
   render() {
     const { firstName, lastName, email, gpa, schoolId } = this.state;
-    const { schools, onSubmit } = this.props;
-    const { onChange } = this;
+    const { schools,  } = this.props;
+    const { onChange,onSubmit } = this;
     return (
-      <form onSubmit={ev => {
-        ev.preventDefault()
-        onSubmit(this.state)}}>
+      <form onSubmit={onSubmit}>
         <label htmlFor="firstName" className="inputLables">
           First Name <input name="firstName" value={firstName} onChange={onChange} />
         </label>
@@ -61,7 +65,7 @@ const stateToProps = state => state;
 
 const distpatchToProps = dispatch => {
   return {
-    onSubmit: (student)=> dispatch(addStudent(student))
+    handlesubmit: (student)=> dispatch(addStudent(student))
   }
 }
 

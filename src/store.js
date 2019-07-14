@@ -78,7 +78,7 @@ const reducer = (state = initState, action) => {
       state = { ...state, students };
       break;
     case NEW_STUDENT:
-      state = { ...state, students: [...state.students, action.product] };
+      state = { ...state, students: [...state.students, action.student] };
       break;
     case DESTROY_STUDENT:
       state = {

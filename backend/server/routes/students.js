@@ -12,8 +12,14 @@ router.get("/", async (req, res, next) => {
 
 router.post("/", async (req, res, next) => {
   try {
+    if (req.body.schoolId === "" || "--Not Enrolled --"){
+      const newStudent = await Student.create({...req.body, schoolId: null})
+      res.status(201).send(newStudent);
+    } else {
     const newStudent = await Student.create(req.body);
     res.status(201).send(newStudent);
+    }
+
   } catch (ex) {
     next(ex);
   }
@@ -21,12 +27,21 @@ router.post("/", async (req, res, next) => {
 
 router.put("/:id", async (req, res, next) => {
   try {
+    if (req.body.schoolId === "" || "--Not Enrolled --"){
+      const upStudent = await Student.update({...req.body, schoolId: null}, {
+        where: {
+          id: req.params.id
+        }
+      });
+      res.send(upStudent)
+    } else {
     const upStudent = await Student.update(req.body, {
       where: {
         id: req.params.id
       }
     });
     res.send(upStudent);
+  }
   } catch (ex) {
     next(ex);
   }

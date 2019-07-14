@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Form from './Form';
-import { destroyStudent } from '../store'
+import { destroyStudent, selectStudent } from '../store'
 
 
-const Students = ({ students, schools, removeStudent }) => {
+const Students = ({ students, schools, removeStudent, enrollSchool }) => {
   return (
      <div>
         <Form />
@@ -15,7 +15,7 @@ const Students = ({ students, schools, removeStudent }) => {
             {student.firstName} {student.lastName}
           </h3>
           <p>GPA: {student.gpa}</p>
-          <select name="schoolId" defaultValue={student.schoolId}>
+          <select name="schoolId" defaultValue={student.schoolId} onChange={(ev) => enrollSchool({schoolId: ev.target.value, studentId: student.id})}>
             <option value={null} >--Not Enrolled --</option>
             {schools.map(school => (
               <option key={school.id} value={school.id}>
@@ -35,7 +35,8 @@ const stateToProps = state => state;
 
 const dispatchToProps = dispatch => {
     return {
-      removeStudent: data => dispatch(destroyStudent(data))
+      removeStudent: data => dispatch(destroyStudent(data)),
+      enrollSchool: data => dispatch(selectStudent(data))
     };
   };
 
