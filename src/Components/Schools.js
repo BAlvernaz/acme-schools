@@ -16,7 +16,7 @@ const Schools = ({ students, schools }) => {
           {schools.map(school => (
             <div key={school.id} id="schoolCard">
               <Link to={`/schools/${school.id}`}>{school.name}</Link>
-              <img id="schoolImg" src={school.image} />
+              <img className="schoolImg" src={school.image} />
               <p>
                 Student Count{' '}
                 {

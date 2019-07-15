@@ -41,7 +41,7 @@ form {
   border: 2px solid black;
   width: 33%;
 }
-#schoolImg {
-  height: 70%;
+.schoolImg {
+  height: 30%;
   width: 100%;
 }

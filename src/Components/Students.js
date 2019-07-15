@@ -1,14 +1,14 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import Form from './Form';
-import { destroyStudent, selectStudent } from '../store';
+import React from "react";
+import { connect } from "react-redux";
+import Form from "./Form";
+import { destroyStudent, selectStudent } from "../store";
 
 const Students = ({
   students,
   schools,
   removeStudent,
   enrollSchool,
-  match
+  getImage
 }) => {
   return (
     <div>
@@ -19,6 +19,7 @@ const Students = ({
             <h3>
               {student.firstName} {student.lastName}
             </h3>
+            <img className="schoolImg" src={getImage(student, schools)} />
             <p>GPA: {student.gpa}</p>
             <select
               defaultValue={student.schoolId}
@@ -64,7 +65,11 @@ const stateToProps = ({ students, schools }, { match }) => {
 const dispatchToProps = dispatch => {
   return {
     removeStudent: data => dispatch(destroyStudent(data)),
-    enrollSchool: data => dispatch(selectStudent(data))
+    enrollSchool: data => dispatch(selectStudent(data)),
+    getImage: (student, schools) => {
+      const school = schools.find(school => school.id === student.schoolId);
+      return school.image;
+    }
   };
 };
 
