@@ -5,9 +5,9 @@ import SelectStudent from './SelectStudent';
 const School = ( {students, match, school } ) => {
   return (
     <div>
-      <h3>{school.name} ({students.length} Student{students.length > 1 ? "s" :''} Enrolled)</h3>
+      {school ? <div><h3>{school.name} ({students.length} Student{students.length > 1 ? "s" :''} Enrolled)</h3>
       <SelectStudent school={school}/>
-      <Students students={students} match={match}/>
+      <Students students={students} match={match}/></div> : '' }
     </div>
   );
 };

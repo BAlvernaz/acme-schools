@@ -19,7 +19,7 @@ const Students = ({
             <h3>
               {student.firstName} {student.lastName}
             </h3>
-            <img className="schoolImg" src={getImage(student, schools)} />
+            {getImage(student, schools)}
             <p>GPA: {student.gpa}</p>
             <select
               defaultValue={student.schoolId}
@@ -67,8 +67,11 @@ const dispatchToProps = dispatch => {
     removeStudent: data => dispatch(destroyStudent(data)),
     enrollSchool: data => dispatch(selectStudent(data)),
     getImage: (student, schools) => {
-      const school = schools.find(school => school.id === student.schoolId);
-      return school.image;
+      const school = schools.find(s => s.id === student.schoolId);
+      if (!school) {
+        return null
+      }
+      return <img className="schoolImg" src={school.image}/>
     }
   };
 };

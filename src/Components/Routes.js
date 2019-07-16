@@ -17,7 +17,7 @@ class Routes extends React.Component {
       <HashRouter>
       <Route component={Navbar} />
       <div>
-        <Route exact path="/home" component={Home} />
+        <Route exact path="/" component={Home} />
         <Route exact path="/schools" component={Schools} />
         <Route path="/schools/:id" component={School} />
         <Route path="/students" component={Students} />
@@ -32,5 +32,7 @@ const dispatchToProps = dispatch => {
     getAll: () => dispatch(loadAll())
   }
 }
+
+
 
 export default connect(null, dispatchToProps)(Routes)

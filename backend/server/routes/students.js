@@ -25,7 +25,7 @@ router.post("/", async (req, res, next) => {
 
 router.put("/:id", async (req, res, next) => {
   try {
-    if(req.body.schoolId === "--Not Enrolled --") {
+    if(req.body.schoolId === "--Not Enrolled --" || !req.body.schoolId) {
       const upStudent = await Student.update({schoolId: null}, {
         where: {
           id: req.params.id
