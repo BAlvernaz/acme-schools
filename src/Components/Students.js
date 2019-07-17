@@ -30,14 +30,14 @@ const Students = ({
                 })
               }
             >
-              <option value={null}>--Not Enrolled --</option>
+              <option value=''>--Not Enrolled --</option>
               {schools.map(school => (
                 <option key={school.id} value={school.id}>
                   {school.name}
                 </option>
               ))}
             </select>
-            <button onClick={() => removeStudent(student.id)}>
+            <button id="destoryBtn"onClick={() => removeStudent(student.id)}>
               Destroy Student
             </button>
           </div>

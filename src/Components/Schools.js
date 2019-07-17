@@ -12,7 +12,6 @@ const Schools = ({ students, schools }) => {
         <Form />
       </div>
       <div id="allSchoolContainer">
-        <div className="schoolCards">
           {schools.map(school => (
             <div key={school.id} id="schoolCard">
               <Link to={`/schools/${school.id}`}>{school.name}</Link>
@@ -32,7 +31,6 @@ const Schools = ({ students, schools }) => {
           ))}
         </div>
       </div>
-    </div>
   );
 };
 
