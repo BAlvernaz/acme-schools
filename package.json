@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postinstall": "npm run webpack",
+    "postinstall": "npm run seed & npm run webpack",
     "webpack": "webpack",
-    "start": "webpack-dev-server --open",
     "start:dev": "npm run build-watch & nodemon ./backend/server/server.js --ignore src/ --ignore --public/",
     "seed": "node ./backend/db/seed.js",
     "test:dev": "mocha ./backend/db/spec.js --watch ",
