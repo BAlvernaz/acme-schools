@@ -4,12 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "postinstall": "npm run webpack",
+    "webpack": "webpack",
     "start": "webpack-dev-server --open",
     "start:dev": "npm run build-watch & nodemon ./backend/server/server.js --ignore src/ --ignore --public/",
     "seed": "node ./backend/db/seed.js",
     "test:dev": "mocha ./backend/db/spec.js --watch ",
     "build-watch": "webpack --watch --mode development",
-    "build": "webpack --mode production"
+
   },
   "keywords": [],
   "author": "",
@@ -38,6 +40,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "express": "^4.17.1",
+    "heroku": "^7.26.2",
     "pg": "^7.11.0",
     "sequelize": "^5.8.12"
   }
