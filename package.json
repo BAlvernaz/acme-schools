@@ -6,7 +6,7 @@
   "scripts": {
     "postinstall": "npm run seed & npm run webpack",
     "webpack": "webpack",
-    "start": "node ./src/index.js",
+    "start": "webpack",
     "start:dev": "npm run build-watch & nodemon ./backend/server/server.js --ignore src/ --ignore --public/",
     "seed": "node ./backend/db/seed.js",
     "test:dev": "mocha ./backend/db/spec.js --watch ",
